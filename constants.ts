@@ -25,134 +25,15 @@ const generateDeck = (): CardData[] => {
       arcana: Arcana.Major,
       suit: Suit.None,
       number: idx,
-      // Using Wikimedia high-res public domain images logic mapping
-      // Note: In a real prod app, these would be local assets. 
-      // Using a reliable placeholder logic for demo.
-      imgUrl: `https://upload.wikimedia.org/wikipedia/commons/thumb/${getWikiPath(m.en)}/300px-${getWikiFilename(m.en)}`,
+      imgUrl: `/tarot/major_${idx}.png`,
       keywords: ["Major Arcana", "Archetype"]
     });
-  });
-
-  const suits = [Suit.Wands, Suit.Cups, Suit.Swords, Suit.Pentacles];
-  const suitNamesCn: Record<Suit, string> = { 
-    [Suit.Wands]: "权杖", [Suit.Cups]: "圣杯", [Suit.Swords]: "宝剑", [Suit.Pentacles]: "星币", [Suit.None]: "" 
-  };
-
-  suits.forEach(suit => {
-    for (let i = 1; i <= 14; i++) {
-      let nameEn = `${i}`;
-      let nameCn = `${i}`;
-      if (i === 1) { nameEn = "Ace"; nameCn = "首牌"; }
-      if (i === 11) { nameEn = "Page"; nameCn = "侍从"; }
-      if (i === 12) { nameEn = "Knight"; nameCn = "骑士"; }
-      if (i === 13) { nameEn = "Queen"; nameCn = "王后"; }
-      if (i === 14) { nameEn = "King"; nameCn = "国王"; }
-
-      const fullNameEn = `${nameEn} of ${suit}`;
-      const fullNameCn = `${suitNamesCn[suit]} ${nameCn}`;
-
-      deck.push({
-        id: idCounter++,
-        name: fullNameEn,
-        name_cn: fullNameCn,
-        arcana: Arcana.Minor,
-        suit: suit,
-        number: i,
-        imgUrl: `https://upload.wikimedia.org/wikipedia/commons/thumb/${getWikiPath(fullNameEn)}/300px-${getWikiFilename(fullNameEn)}`,
-        keywords: [suit, "Minor Arcana"]
-      });
-    }
   });
 
   return deck;
 };
 
-// Quick mapping helper for Wikimedia Commons RWS deck
-// This is a heuristic to get working images without hosting them
-function getWikiFilename(name: string): string {
-    const map: Record<string, string> = {
-        "The Fool": "RWS_Tarot_00_Fool.jpg",
-        "The Magician": "RWS_Tarot_01_Magician.jpg",
-        "The High Priestess": "RWS_Tarot_02_High_Priestess.jpg",
-        "The Empress": "RWS_Tarot_03_Empress.jpg",
-        "The Emperor": "RWS_Tarot_04_Emperor.jpg",
-        "The Hierophant": "RWS_Tarot_05_Hierophant.jpg",
-        "The Lovers": "RWS_Tarot_06_Lovers.jpg",
-        "The Chariot": "RWS_Tarot_07_Chariot.jpg",
-        "Strength": "RWS_Tarot_08_Strength.jpg",
-        "The Hermit": "RWS_Tarot_09_Hermit.jpg",
-        "Wheel of Fortune": "RWS_Tarot_10_Wheel_of_Fortune.jpg",
-        "Justice": "RWS_Tarot_11_Justice.jpg",
-        "The Hanged Man": "RWS_Tarot_12_Hanged_Man.jpg",
-        "Death": "RWS_Tarot_13_Death.jpg",
-        "Temperance": "RWS_Tarot_14_Temperance.jpg",
-        "The Devil": "RWS_Tarot_15_Devil.jpg",
-        "The Tower": "RWS_Tarot_16_Tower.jpg",
-        "The Star": "RWS_Tarot_17_Star.jpg",
-        "The Moon": "RWS_Tarot_18_Moon.jpg",
-        "The Sun": "RWS_Tarot_19_Sun.jpg",
-        "Judgement": "RWS_Tarot_20_Judgement.jpg",
-        "The World": "RWS_Tarot_21_World.jpg"
-    };
-    
-    // Minor Arcana logic
-    if (!map[name]) {
-        const parts = name.split(' of ');
-        const numMap: Record<string, string> = { "Ace": "01", "Page": "11", "Knight": "12", "Queen": "13", "King": "14" };
-        let numStr = parts[0];
-        if (numMap[parts[0]]) numStr = numMap[parts[0]];
-        else if (parseInt(parts[0]) < 10) numStr = "0" + parts[0];
-        
-        const suitMap: Record<string, string> = { "Wands": "Wands", "Cups": "Cups", "Swords": "Swords", "Pentacles": "Pentacles" };
-        const suitShort = suitMap[parts[1]];
-        
-        return `RWS_Tarot_${suitShort}_${numStr}.jpg`;
-    }
-    return map[name];
-}
-
-function getWikiPath(name: string): string {
-    const filename = getWikiFilename(name);
-    // MD5 hash structure for Wikimedia paths is complex to guess perfectly without a map.
-    // Fallback: use a reliable external simple placeholder if this fails, 
-    // OR use a specific github repo serving these static assets.
-    // For this demo, we will use a specific GitHub Pages mirror of the RWS deck for stability.
-    // Changing strategy from Wikimedia to a stable raw github pointer to avoid 404s on dynamic paths.
-    return ""; // Not used in new strategy
-}
-
-// Re-implementing image URL getter to use a stable source
-const getStableImageUrl = (card: CardData): string => {
-    // Using a known repository for RWS tarot images
-    const filename = getWikiFilename(card.name);
-    return `https://upload.wikimedia.org/wikipedia/commons/d/de/${filename}`; 
-    // Note: The above is still risky for hash paths. 
-    // Let's use a very reliable placeholder service that supports text if image fails,
-    // or better, a known public deck.
-    // Actually, let's use a generic mystical placeholder for the code, 
-    // BUT for the "best" result, I will map to a static list if possible.
-    // Since I can't guarantee Wikimedia hash paths, I will use a reliable external Tarot API image source.
-    
-    // Sacred Texts archive naming convention
-    const suitCode = { [Suit.Wands]: 'w', [Suit.Cups]: 'c', [Suit.Swords]: 's', [Suit.Pentacles]: 'p', [Suit.None]: '' };
-    let shortName = "";
-    if (card.arcana === Arcana.Major) {
-       const majMap = ["ar00", "ar01", "ar02", "ar03", "ar04", "ar05", "ar06", "ar07", "ar08", "ar09", "ar10", "ar11", "ar12", "ar13", "ar14", "ar15", "ar16", "ar17", "ar18", "ar19", "ar20", "ar21"];
-       shortName = majMap[card.number];
-    } else {
-       const s = suitCode[card.suit];
-       let n = card.number.toString();
-       if (card.number === 1) n = "a";
-       if (card.number === 11) n = "p";
-       if (card.number === 12) n = "n"; // Knight is often 'n' or 'kn'
-       if (card.number === 13) n = "q";
-       if (card.number === 14) n = "k";
-       shortName = `${s}${n}`;
-    }
-    return `https://www.sacred-texts.com/tarot/pkt/${shortName}.jpg`;
-}
-
-export const DECK = generateDeck().map(c => ({...c, imgUrl: getStableImageUrl(c)}));
+export const DECK = generateDeck();
 
 export const SPREADS: SpreadConfig[] = [
   {

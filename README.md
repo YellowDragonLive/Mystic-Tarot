@@ -2,19 +2,44 @@
 <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>
 
-# Run and deploy your AI Studio app
+# Mystic Tarot
 
-This contains everything you need to run your app locally.
+An immersive, AI-powered Tarot reading application built with React and Tailwind CSS.
 
-View your app in AI Studio: https://ai.studio/apps/drive/1tQxFYZhr1Tm54rdLUTX6NxvN6YZradFs
+## Features
+
+- **Interactive Spreads**: Choose from various spreads including Daily Draw, Timeflow (Past/Present/Future), and Celtic Cross.
+- **AI Interpretation**: Real-time, streaming interpretations provided by advanced AI models (via Gemini/Moonshot API).
+- **Visual Richness**: Beautiful card animations, dark mode aesthetic, and responsive design.
+- **Reversed Cards**: Authentic Tarot experience with support for reversed card meanings.
+- **Customizable**: Easy to extend with new spreads or card decks.
 
 ## Run Locally
 
-**Prerequisites:**  Node.js
+**Prerequisites:** Node.js
 
+1.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+2.  **Configure Environment:**
+    Create a `.env.local` file in the root directory and add your API credentials:
+    ```env
+    VITE_API_KEY=your_api_key_here
+    VITE_API_URL=https://ai.megallm.io
+    VITE_API_MODEL=moonshotai/kimi-k2-thinking
+    ```
+
+3.  **Run the app:**
+    ```bash
+    npm run dev
+    ```
+
+## Technologies
+
+- React 18
+- TypeScript
+- Tailwind CSS
+- Lucide React (Icons)
+- Framer Motion (Animations)
