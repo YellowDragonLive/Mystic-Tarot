@@ -1,4 +1,4 @@
-import { DrawnCard, SpreadConfig } from "../types";
+import { DrawnCard, SpreadConfig, ChatMessage } from "../types";
 
 // Configuration from test.js
 const BASE_URL = import.meta.env.VITE_API_URL || "https://ai.megallm.io";
@@ -15,7 +15,7 @@ export const getTarotInterpretation = async (
   spread: SpreadConfig,
   drawnCards: DrawnCard[],
   onChunk?: (text: string) => void
-): Promise<string> => {
+): Promise<{ analysis: string; systemPrompt: string }> => {
 
   let promptContext = `You are a professional, mystical Tarot Reader with deep knowledge of the Rider-Waite system. 
   Please interpret the following ${spread.name} spread for the user. 
@@ -31,7 +31,7 @@ export const getTarotInterpretation = async (
     promptContext += `   Card: ${dc.card.name_cn} (${dc.card.name}) - ${status}\n`;
   });
 
-  promptContext += `\nPlease provide a comprehensive reading. 
+  const userInstruction = `\nPlease provide a comprehensive reading. 
   1. briefly explain each card in its position.
   2. provide a synthesis/summary of the overall energy.
   3. give actionable advice.
@@ -42,8 +42,12 @@ export const getTarotInterpretation = async (
     model: MODEL_TO_USE,
     messages: [
       {
-        role: "user",
+        role: "system",
         content: promptContext
+      },
+      {
+        role: "user",
+        content: userInstruction
       }
     ],
     stream: true, // Enable streaming
@@ -51,6 +55,27 @@ export const getTarotInterpretation = async (
     max_tokens: 2048
   };
 
+  const fullText = await streamResponse(payload, onChunk);
+  return { analysis: fullText, systemPrompt: promptContext };
+};
+
+export const chatWithTarotReader = async (
+  messages: ChatMessage[],
+  onChunk?: (text: string) => void
+): Promise<string> => {
+
+  const payload = {
+    model: MODEL_TO_USE,
+    messages: messages,
+    stream: true,
+    temperature: 0.7,
+    max_tokens: 1024
+  };
+
+  return await streamResponse(payload, onChunk);
+};
+
+const streamResponse = async (payload: any, onChunk?: (text: string) => void): Promise<string> => {
   const options = {
     method: "POST",
     headers: {
@@ -62,7 +87,6 @@ export const getTarotInterpretation = async (
 
   try {
     console.log(`[Request] Sending to ${API_ENDPOINT}...`);
-    console.log(`[Request] Model: ${MODEL_TO_USE}`);
 
     const response = await fetch(API_ENDPOINT, options);
 

@@ -20,6 +20,7 @@ export interface CardData {
   number: number; // 0-21 for Major, 1-14 for Minor
   imgUrl: string; // Using placeholder or wikimedia logic
   keywords: string[];
+  description?: string;
 }
 
 export interface DrawnCard {
@@ -48,4 +49,17 @@ export enum AppPhase {
   Shuffling = 'SHUFFLING',
   Drawing = 'DRAWING',
   Reading = 'READING'
+}
+
+export interface ChatMessage {
+  role: 'user' | 'assistant' | 'system';
+  content: string;
+}
+
+export interface ReadingHistoryItem {
+  id: string;
+  timestamp: number;
+  spreadId: string;
+  drawnCards: DrawnCard[];
+  chatHistory: ChatMessage[];
 }

@@ -1,0 +1,562 @@
+[
+  {
+    "id": 22,
+    "name": "Ace of Wands",
+    "name_cn": "权杖 | 一",
+    "suit": "wands",
+    "number": 0,
+    "imgUrl": "/tarot/minor_wands_0.png",
+    "description": "灵感的火花点燃了日常的平凡，预示着新的冒险和创造力的萌芽。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 23,
+    "name": "Two of Wands",
+    "name_cn": "权杖 | 二",
+    "suit": "wands",
+    "number": 1,
+    "imgUrl": "/tarot/minor_wands_1.png",
+    "description": "站在抉择的边缘，审视着眼前的世界与未来的可能性，是时候做出下一步的计划。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 24,
+    "name": "Three of Wands",
+    "name_cn": "权杖 | 三",
+    "suit": "wands",
+    "number": 2,
+    "imgUrl": "/tarot/minor_wands_2.png",
+    "description": "辛勤耕耘后，远方的船只载着希望和成果归来，付出终有回报。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 25,
+    "name": "Four of Wands",
+    "name_cn": "权杖 | 四",
+    "suit": "wands",
+    "number": 3,
+    "imgUrl": "/tarot/minor_wands_3.png",
+    "description": "在平凡生活中找到庆祝的理由，家园的温馨与社群的和谐带来安定与喜悦。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 26,
+    "name": "Five of Wands",
+    "name_cn": "权杖 | 五",
+    "suit": "wands",
+    "number": 4,
+    "imgUrl": "/tarot/minor_wands_4.png",
+    "description": "日常的小摩擦和竞争，虽然混乱却也激发着活力与进步。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 27,
+    "name": "Six of Wands",
+    "name_cn": "权杖 | 六",
+    "suit": "wands",
+    "number": 5,
+    "imgUrl": "/tarot/minor_wands_5.png",
+    "description": "在小小的胜利中获得认可，努力的成果得到周围人的肯定。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 28,
+    "name": "Seven of Wands",
+    "name_cn": "权杖 | 七",
+    "suit": "wands",
+    "number": 6,
+    "imgUrl": "/tarot/minor_wands_6.png",
+    "description": "面对挑战，鼓起勇气捍卫自己的立场和所珍视的一切。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 29,
+    "name": "Eight of Wands",
+    "name_cn": "权杖 | 八",
+    "suit": "wands",
+    "number": 7,
+    "imgUrl": "/tarot/minor_wands_7.png",
+    "description": "思绪和消息如箭般迅速，日常事务加速推进，变化迫在眉睫。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 30,
+    "name": "Nine of Wands",
+    "name_cn": "权杖 | 九",
+    "suit": "wands",
+    "number": 8,
+    "imgUrl": "/tarot/minor_wands_8.png",
+    "description": "历经磨砺，虽然疲惫却依然坚韧，最后一道防线即将守住。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 31,
+    "name": "Ten of Wands",
+    "name_cn": "权杖 | 十",
+    "suit": "wands",
+    "number": 9,
+    "imgUrl": "/tarot/minor_wands_9.png",
+    "description": "背负着沉重的责任，日常的负担压得人喘不过气，寻求卸下的方式。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 32,
+    "name": "Page of Wands",
+    "name_cn": "权杖 | 侍从",
+    "suit": "wands",
+    "number": 10,
+    "imgUrl": "/tarot/minor_wands_10.png",
+    "description": "对世界充满好奇，带来新鲜的创意和探索的冲动，学习与成长。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 33,
+    "name": "Knight of Wands",
+    "name_cn": "权杖 | 骑士",
+    "suit": "wands",
+    "number": 11,
+    "imgUrl": "/tarot/minor_wands_11.png",
+    "description": "充满活力和冒险精神，不顾一切地追求激情与目标，冲动而勇敢。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 34,
+    "name": "Queen of Wands",
+    "name_cn": "权杖 | 王后",
+    "suit": "wands",
+    "number": 12,
+    "imgUrl": "/tarot/minor_wands_12.png",
+    "description": "热情、独立、自信，在日常生活中充满魅力，激发着周围人的创造力。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 35,
+    "name": "King of Wands",
+    "name_cn": "权杖 | 国王",
+    "suit": "wands",
+    "number": 13,
+    "imgUrl": "/tarot/minor_wands_13.png",
+    "description": "拥有远见和领导力，将日常的灵感转化为伟大的事业，指引方向。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 36,
+    "name": "Ace of Cups",
+    "name_cn": "圣杯 | 一",
+    "suit": "cups",
+    "number": 0,
+    "imgUrl": "/tarot/minor_cups_0.png",
+    "description": "心灵的泉水涌出，新的情感体验和直觉的开始，日常充满了爱与和谐。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 37,
+    "name": "Two of Cups",
+    "name_cn": "圣杯 | 二",
+    "suit": "cups",
+    "number": 1,
+    "imgUrl": "/tarot/minor_cups_1.png",
+    "description": "在平凡的相遇中，两颗心相互吸引，建立起真诚而美好的连接。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 38,
+    "name": "Three of Cups",
+    "name_cn": "圣杯 | 三",
+    "suit": "cups",
+    "number": 2,
+    "imgUrl": "/tarot/minor_cups_2.png",
+    "description": "朋友相聚，分享喜悦与成功，庆祝生活中的小确幸。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 39,
+    "name": "Four of Cups",
+    "name_cn": "圣杯 | 四",
+    "suit": "cups",
+    "number": 3,
+    "imgUrl": "/tarot/minor_cups_3.png",
+    "description": "面对眼前的幸福，却心生倦怠，对日常的馈赠视而不见，需要重新审视内心。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 40,
+    "name": "Five of Cups",
+    "name_cn": "圣杯 | 五",
+    "suit": "cups",
+    "number": 4,
+    "imgUrl": "/tarot/minor_cups_4.png",
+    "description": "沉浸在失去的悲伤中，却忽视了身边仍旧存在的希望和支持。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 41,
+    "name": "Six of Cups",
+    "name_cn": "圣杯 | 六",
+    "suit": "cups",
+    "number": 5,
+    "imgUrl": "/tarot/minor_cups_5.png",
+    "description": "回忆童年旧事，重温简单纯粹的喜悦，在给予和接受中感受温暖。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 42,
+    "name": "Seven of Cups",
+    "name_cn": "圣杯 | 七",
+    "suit": "cups",
+    "number": 6,
+    "imgUrl": "/tarot/minor_cups_6.png",
+    "description": "面对眼花缭乱的选择，思绪飘渺，沉浸在幻想与可能性中。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 43,
+    "name": "Eight of Cups",
+    "name_cn": "圣杯 | 八",
+    "suit": "cups",
+    "number": 7,
+    "imgUrl": "/tarot/minor_cups_7.png",
+    "description": "放弃看似圆满却已无意义的日常，踏上寻求更深层价值的旅程。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 44,
+    "name": "Nine of Cups",
+    "name_cn": "圣杯 | 九",
+    "suit": "cups",
+    "number": 8,
+    "imgUrl": "/tarot/minor_cups_8.png",
+    "description": "心满意足地享受着日常的成果，愿望达成，内心平静而喜悦。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 45,
+    "name": "Ten of Cups",
+    "name_cn": "圣杯 | 十",
+    "suit": "cups",
+    "number": 9,
+    "imgUrl": "/tarot/minor_cups_9.png",
+    "description": "家庭和睦，情感丰盈，日常点滴汇聚成永恒的幸福。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 46,
+    "name": "Page of Cups",
+    "name_cn": "圣杯 | 侍从",
+    "suit": "cups",
+    "number": 10,
+    "imgUrl": "/tarot/minor_cups_10.png",
+    "description": "带来情感上的新消息，激发直觉与创造力，对世界充满好奇。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 47,
+    "name": "Knight of Cups",
+    "name_cn": "圣杯 | 骑士",
+    "suit": "cups",
+    "number": 11,
+    "imgUrl": "/tarot/minor_cups_11.png",
+    "description": "浪漫的使者，带着深情与美好的提议而来，追寻理想与梦想。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 48,
+    "name": "Queen of Cups",
+    "name_cn": "圣杯 | 王后",
+    "suit": "cups",
+    "number": 12,
+    "imgUrl": "/tarot/minor_cups_12.png",
+    "description": "富有同情心和直觉，在日常中滋养他人，是情感的港湾。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 49,
+    "name": "King of Cups",
+    "name_cn": "圣杯 | 国王",
+    "suit": "cups",
+    "number": 13,
+    "imgUrl": "/tarot/minor_cups_13.png",
+    "description": "情感平衡的大师，以智慧和理解驾驭日常生活的波澜。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 50,
+    "name": "Ace of Swords",
+    "name_cn": "宝剑 | 一",
+    "suit": "swords",
+    "number": 0,
+    "imgUrl": "/tarot/minor_swords_0.png",
+    "description": "思维的锋芒破开迷雾，带来清晰的洞察和新的理解。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 51,
+    "name": "Two of Swords",
+    "name_cn": "宝剑 | 二",
+    "suit": "swords",
+    "number": 1,
+    "imgUrl": "/tarot/minor_swords_1.png",
+    "description": "闭目不愿面对现实，在日常的十字路口陷入僵局，难以抉择。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 52,
+    "name": "Three of Swords",
+    "name_cn": "宝剑 | 三",
+    "suit": "swords",
+    "number": 2,
+    "imgUrl": "/tarot/minor_swords_2.png",
+    "description": "痛苦的真相揭示，心碎的日常时刻，直面分离与伤痛。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 53,
+    "name": "Four of Swords",
+    "name_cn": "宝剑 | 四",
+    "suit": "swords",
+    "number": 3,
+    "imgUrl": "/tarot/minor_swords_3.png",
+    "description": "暂时放下日常的纷扰，寻求心灵的休憩与恢复。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 54,
+    "name": "Five of Swords",
+    "name_cn": "宝剑 | 五",
+    "suit": "swords",
+    "number": 4,
+    "imgUrl": "/tarot/minor_swords_4.png",
+    "description": "胜利的代价高昂，日常的争执留下苦涩的残局。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 55,
+    "name": "Six of Swords",
+    "name_cn": "宝剑 | 六",
+    "suit": "swords",
+    "number": 5,
+    "imgUrl": "/tarot/minor_swords_5.png",
+    "description": "告别旧的日常，带着希望和回忆驶向新的彼岸。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 56,
+    "name": "Seven of Swords",
+    "name_cn": "宝剑 | 七",
+    "suit": "swords",
+    "number": 6,
+    "imgUrl": "/tarot/minor_swords_6.png",
+    "description": "策略与取巧，在日常中寻求捷径，有时伴随着欺瞒。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 57,
+    "name": "Eight of Swords",
+    "name_cn": "宝剑 | 八",
+    "suit": "swords",
+    "number": 7,
+    "imgUrl": "/tarot/minor_swords_7.png",
+    "description": "感觉被日常琐事束缚，自我设限的困境，需要找到挣脱的钥匙。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 58,
+    "name": "Nine of Swords",
+    "name_cn": "宝剑 | 九",
+    "suit": "swords",
+    "number": 8,
+    "imgUrl": "/tarot/minor_swords_8.png",
+    "description": "夜不能寐，忧虑重重，日常的恐惧与悔恨在心头徘徊。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 59,
+    "name": "Ten of Swords",
+    "name_cn": "宝剑 | 十",
+    "suit": "swords",
+    "number": 9,
+    "imgUrl": "/tarot/minor_swords_9.png",
+    "description": "一切走向终结，日常的苦难达到顶点，预示着新的开始。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 60,
+    "name": "Page of Swords",
+    "name_cn": "宝剑 | 侍从",
+    "suit": "swords",
+    "number": 10,
+    "imgUrl": "/tarot/minor_swords_10.png",
+    "description": "敏锐好奇，渴望探究真相，在日常中寻求知识与智慧。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 61,
+    "name": "Knight of Swords",
+    "name_cn": "宝剑 | 骑士",
+    "suit": "swords",
+    "number": 11,
+    "imgUrl": "/tarot/minor_swords_11.png",
+    "description": "果断直率，勇往直前，在日常的挑战中坚持真理与正义。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 62,
+    "name": "Queen of Swords",
+    "name_cn": "宝剑 | 王后",
+    "suit": "swords",
+    "number": 12,
+    "imgUrl": "/tarot/minor_swords_12.png",
+    "description": "思维清晰，独立自主，用智慧和公正处理日常的复杂。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 63,
+    "name": "King of Swords",
+    "name_cn": "宝剑 | 国王",
+    "suit": "swords",
+    "number": 13,
+    "imgUrl": "/tarot/minor_swords_13.png",
+    "description": "理性睿智，公正严明，在日常事务中运用逻辑和权威。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 64,
+    "name": "Ace of Pentacles",
+    "name_cn": "星币 | 一",
+    "suit": "pentacles",
+    "number": 0,
+    "imgUrl": "/tarot/minor_pentacles_0.png",
+    "description": "新的物质机会涌现，日常的努力将带来丰厚的回报。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 65,
+    "name": "Two of Pentacles",
+    "name_cn": "星币 | 二",
+    "suit": "pentacles",
+    "number": 1,
+    "imgUrl": "/tarot/minor_pentacles_1.png",
+    "description": "在日常的变动中寻找平衡，灵活应对各种资源和任务。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 66,
+    "name": "Three of Pentacles",
+    "name_cn": "星币 | 三",
+    "suit": "pentacles",
+    "number": 2,
+    "imgUrl": "/tarot/minor_pentacles_2.png",
+    "description": "通过团队协作和精湛技艺，在日常工作中共同完成目标。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 67,
+    "name": "Four of Pentacles",
+    "name_cn": "星币 | 四",
+    "suit": "pentacles",
+    "number": 3,
+    "imgUrl": "/tarot/minor_pentacles_3.png",
+    "description": "紧握已有的财富与安全感，对日常的拥有表现出保守和固执。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 68,
+    "name": "Five of Pentacles",
+    "name_cn": "星币 | 五",
+    "suit": "pentacles",
+    "number": 4,
+    "imgUrl": "/tarot/minor_pentacles_4.png",
+    "description": "在物质困境中挣扎，日常的贫困和孤独，渴望援助。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 69,
+    "name": "Six of Pentacles",
+    "name_cn": "星币 | 六",
+    "suit": "pentacles",
+    "number": 5,
+    "imgUrl": "/tarot/minor_pentacles_5.png",
+    "description": "在日常中施予援手，分享财富，体现慷慨与慈善。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 70,
+    "name": "Seven of Pentacles",
+    "name_cn": "星币 | 七",
+    "suit": "pentacles",
+    "number": 6,
+    "imgUrl": "/tarot/minor_pentacles_6.png",
+    "description": "辛勤耕耘后，耐心等待日常的收获，审视付出与回报。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 71,
+    "name": "Eight of Pentacles",
+    "name_cn": "星币 | 八",
+    "suit": "pentacles",
+    "number": 7,
+    "imgUrl": "/tarot/minor_pentacles_7.png",
+    "description": "专注于技艺的精进，在日常工作中刻苦学习和实践。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 72,
+    "name": "Nine of Pentacles",
+    "name_cn": "星币 | 九",
+    "suit": "pentacles",
+    "number": 8,
+    "imgUrl": "/tarot/minor_pentacles_8.png",
+    "description": "享受独立自主的丰饶，在日常中收获辛勤劳动的成果。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 73,
+    "name": "Ten of Pentacles",
+    "name_cn": "星币 | 十",
+    "suit": "pentacles",
+    "number": 9,
+    "imgUrl": "/tarot/minor_pentacles_9.png",
+    "description": "家族财富与传承，日常的幸福与安全感代代相传。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 74,
+    "name": "Page of Pentacles",
+    "name_cn": "星币 | 侍从",
+    "suit": "pentacles",
+    "number": 10,
+    "imgUrl": "/tarot/minor_pentacles_10.png",
+    "description": "务实好学，带来新的物质机会或学习任务，对世界充满探索欲。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 75,
+    "name": "Knight of Pentacles",
+    "name_cn": "星币 | 骑士",
+    "suit": "pentacles",
+    "number": 11,
+    "imgUrl": "/tarot/minor_pentacles_11.png",
+    "description": "稳重可靠，勤奋踏实，在日常中坚定不移地完成任务。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 76,
+    "name": "Queen of Pentacles",
+    "name_cn": "星币 | 王后",
+    "suit": "pentacles",
+    "number": 12,
+    "imgUrl": "/tarot/minor_pentacles_12.png",
+    "description": "滋养与实用主义的结合，在日常中创造温馨富足的环境。",
+    "arcana": "Minor"
+  },
+  {
+    "id": 77,
+    "name": "King of Pentacles",
+    "name_cn": "星币 | 国王",
+    "suit": "pentacles",
+    "number": 13,
+    "imgUrl": "/tarot/minor_pentacles_13.png",
+    "description": "财富与成功的象征，在日常中展现慷慨和稳定的领导力。",
+    "arcana": "Minor"
+  }
+]

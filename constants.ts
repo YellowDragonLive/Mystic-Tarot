@@ -1,5 +1,7 @@
 import { Arcana, CardData, SpreadConfig, Suit } from './types';
 
+import minorArcanaData from './src/data/minorArcana.json';
+
 // Helper to generate full deck metadata
 const generateDeck = (): CardData[] => {
   const deck: CardData[] = [];
@@ -27,6 +29,33 @@ const generateDeck = (): CardData[] => {
       number: idx,
       imgUrl: `/tarot/major_${idx}.png`,
       keywords: ["Major Arcana", "Archetype"]
+    });
+  });
+
+  // Merge Minor Arcana
+  // Cast JSON data to CardData[] or map it if necessary. 
+  // The JSON structure matches CardData interface mostly, but we need to ensure enums match.
+  // In JSON: "arcana": "Minor", "suit": "wands" etc.
+  // In TS: Arcana.Minor, Suit.Wands
+
+  const suitMap: Record<string, Suit> = {
+    "wands": Suit.Wands,
+    "cups": Suit.Cups,
+    "swords": Suit.Swords,
+    "pentacles": Suit.Pentacles
+  };
+
+  minorArcanaData.forEach((card: any) => {
+    deck.push({
+      id: card.id,
+      name: card.name,
+      name_cn: card.name_cn,
+      arcana: Arcana.Minor,
+      suit: suitMap[card.suit] || Suit.None,
+      number: card.number,
+      imgUrl: card.imgUrl,
+      description: card.description,
+      keywords: ["Minor Arcana", card.suit]
     });
   });
 

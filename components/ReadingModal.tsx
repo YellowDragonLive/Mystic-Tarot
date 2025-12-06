@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { DrawnCard, SpreadConfig } from '../types';
-import { X, Sparkles, Loader2, Image as ImageIcon, Download } from 'lucide-react';
-import { getTarotInterpretation, generateTarotImage } from '../services/geminiService';
+import { X, Sparkles, Loader2, Image as ImageIcon, Download, Send, MessageSquare } from 'lucide-react';
+import { getTarotInterpretation, generateTarotImage, chatWithTarotReader } from '../services/geminiService';
 import ReactMarkdown from 'react-markdown';
+import { ChatMessage, ReadingHistoryItem } from '../types';
+import { saveReading } from '../utils/history';
 
 interface ReadingModalProps {
   isOpen: boolean;
@@ -10,9 +12,10 @@ interface ReadingModalProps {
   drawnCards: DrawnCard[];
   spread: SpreadConfig;
   activeIndex: number | null; // If viewing specific card detail
+  restoredReading?: ReadingHistoryItem | null;
 }
 
-const ReadingModal: React.FC<ReadingModalProps> = ({ isOpen, onClose, drawnCards, spread, activeIndex }) => {
+const ReadingModal: React.FC<ReadingModalProps> = ({ isOpen, onClose, drawnCards, spread, activeIndex, restoredReading }) => {
   const [aiAnalysis, setAiAnalysis] = useState<string>('');
   const [loadingReading, setLoadingReading] = useState(false);
 
@@ -21,13 +24,20 @@ const ReadingModal: React.FC<ReadingModalProps> = ({ isOpen, onClose, drawnCards
 
   const [activeTab, setActiveTab] = useState<'card' | 'reading'>('card');
 
+  // Chat State
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [chatInput, setChatInput] = useState('');
+  const [isChatting, setIsChatting] = useState(false);
+  const [readingId, setReadingId] = useState<string>('');
+
   // Reset state when modal opens/closes or active index changes
   useEffect(() => {
     if (isOpen) {
       if (activeIndex === null) {
         // Full Reading Mode
         setActiveTab('reading');
-        if (!aiAnalysis && !loadingReading) {
+        if (!aiAnalysis && !loadingReading && messages.length === 0) {
+          // Only fetch if we don't have analysis/messages (restoration handles this)
           fetchAiReading();
         }
       } else {
@@ -40,15 +50,95 @@ const ReadingModal: React.FC<ReadingModalProps> = ({ isOpen, onClose, drawnCards
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, activeIndex]);
 
+  // Handle New Reading or Restoration
+  useEffect(() => {
+    if (restoredReading && JSON.stringify(restoredReading.drawnCards) === JSON.stringify(drawnCards)) {
+      // Restore State
+      const analysisMsg = restoredReading.chatHistory.find(m => m.role === 'assistant');
+      setAiAnalysis(analysisMsg?.content || '');
+      setMessages(restoredReading.chatHistory);
+      setReadingId(restoredReading.id);
+    } else {
+      // New Reading
+      setAiAnalysis('');
+      setMessages([]);
+      setReadingId('');
+    }
+  }, [drawnCards, restoredReading]);
+
+  const saveCurrentReading = (currentMessages: ChatMessage[]) => {
+    if (!readingId) return;
+
+    saveReading({
+      id: readingId,
+      timestamp: Date.now(),
+      spreadId: spread.id,
+      drawnCards,
+      chatHistory: currentMessages
+    });
+  };
+
   const fetchAiReading = async () => {
     setLoadingReading(true);
     setAiAnalysis(''); // Clear previous analysis
+    const newId = Date.now().toString();
+    setReadingId(newId);
 
-    await getTarotInterpretation(spread, drawnCards, (chunk) => {
+    let currentAnalysis = '';
+    const { analysis, systemPrompt } = await getTarotInterpretation(spread, drawnCards, (chunk) => {
       setAiAnalysis(prev => prev + chunk);
+      currentAnalysis += chunk;
+    });
+
+    // Initialize chat history
+    const initialMessages: ChatMessage[] = [
+      { role: 'system', content: systemPrompt },
+      { role: 'assistant', content: analysis } // Use the full returned analysis
+    ];
+    setMessages(initialMessages);
+
+    // Save to history
+    saveReading({
+      id: newId,
+      timestamp: Date.now(),
+      spreadId: spread.id,
+      drawnCards,
+      chatHistory: initialMessages
     });
 
     setLoadingReading(false);
+  };
+
+  const handleSendMessage = async () => {
+    if (!chatInput.trim() || isChatting) return;
+
+    const userMsg: ChatMessage = { role: 'user', content: chatInput };
+    const newMessages = [...messages, userMsg];
+
+    setMessages(newMessages);
+    setChatInput('');
+    setIsChatting(true);
+
+    // Add placeholder for assistant response
+    const assistantMsgIndex = newMessages.length;
+    const assistantMsg: ChatMessage = { role: 'assistant', content: '' };
+    const messagesWithAssistant = [...newMessages, assistantMsg];
+    setMessages(messagesWithAssistant);
+
+    let fullResponse = '';
+    await chatWithTarotReader(newMessages, (chunk) => {
+      fullResponse += chunk;
+      setMessages(prev => {
+        const updated = [...prev];
+        if (updated[assistantMsgIndex]) {
+          updated[assistantMsgIndex] = { ...updated[assistantMsgIndex], content: fullResponse };
+        }
+        return updated;
+      });
+    });
+
+    setIsChatting(false);
+    saveCurrentReading(messagesWithAssistant.map((m, i) => i === assistantMsgIndex ? { ...m, content: fullResponse } : m));
   };
 
   const handleGenerateImage = async () => {
@@ -207,8 +297,51 @@ const ReadingModal: React.FC<ReadingModalProps> = ({ isOpen, onClose, drawnCards
               )}
 
               {aiAnalysis && (
-                <div className="prose prose-invert prose-amber max-w-none">
-                  <ReactMarkdown>{aiAnalysis}</ReactMarkdown>
+                <div className="space-y-8 pb-20">
+                  <div className="prose prose-invert prose-amber max-w-none">
+                    <ReactMarkdown>{aiAnalysis}</ReactMarkdown>
+                  </div>
+
+                  {/* Chat Section */}
+                  <div className="border-t border-amber-500/20 pt-8 mt-8">
+                    <h3 className="text-lg font-serif text-amber-200 mb-4 flex items-center gap-2">
+                      <MessageSquare className="w-4 h-4" /> Ask the Cards
+                    </h3>
+
+                    {/* Chat History (excluding system and initial reading) */}
+                    <div className="space-y-4 mb-6">
+                      {messages.slice(2).map((msg, idx) => (
+                        <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                          <div className={`max-w-[85%] rounded-lg p-3 ${msg.role === 'user'
+                            ? 'bg-amber-900/40 text-amber-100'
+                            : 'bg-slate-800 text-slate-300'
+                            }`}>
+                            <ReactMarkdown>{msg.content}</ReactMarkdown>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Input */}
+                    <div className="relative">
+                      <input
+                        type="text"
+                        value={chatInput}
+                        onChange={(e) => setChatInput(e.target.value)}
+                        onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
+                        placeholder="Ask a follow-up question..."
+                        disabled={isChatting}
+                        className="w-full bg-slate-950/50 border border-amber-500/30 rounded-lg pl-4 pr-12 py-3 text-sm text-amber-100 placeholder:text-slate-500 focus:outline-none focus:border-amber-500 transition-colors"
+                      />
+                      <button
+                        onClick={handleSendMessage}
+                        disabled={!chatInput.trim() || isChatting}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 text-amber-500 hover:text-amber-300 disabled:opacity-50 disabled:hover:text-amber-500 transition-colors"
+                      >
+                        {isChatting ? <Loader2 className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5" />}
+                      </button>
+                    </div>
+                  </div>
                 </div>
               )}
             </div>
