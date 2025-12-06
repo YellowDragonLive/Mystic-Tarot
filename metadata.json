@@ -1,0 +1,5 @@
+{
+  "name": "Mystic Tarot",
+  "description": "An immersive, interactive Tarot reading application featuring 3D card animations, multiple spreads (Daily, Time Flow, Celtic Cross), and AI-powered interpretations using Gemini.",
+  "requestFramePermissions": []
+}
