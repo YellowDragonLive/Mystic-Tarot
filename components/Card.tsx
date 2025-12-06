@@ -26,19 +26,15 @@ const Card: React.FC<CardProps> = ({
       <div
         className={`w-full h-full duration-700 transform-style-3d transition-transform shadow-xl rounded-lg
           ${isRevealed ? 'rotate-y-180' : ''}
-          ${(!isRevealed && !isBack) ? 'rotate-y-180' : ''} 
         `}
       >
         {/* Back of Card */}
         <div className={`absolute w-full h-full backface-hidden rounded-lg overflow-hidden border-2 border-slate-700 bg-slate-900`}>
-          {/* Simple Geometric Pattern for Card Back */}
-          <div className="w-full h-full opacity-60 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-indigo-900 via-slate-900 to-black">
-            <div className="w-full h-full flex items-center justify-center">
-              <div className="w-12 h-12 border-2 border-amber-600 rotate-45"></div>
-              <div className="absolute w-12 h-12 border-2 border-amber-600 rotate-0"></div>
-            </div>
-          </div>
-          <div className="absolute inset-2 border border-amber-900/50 rounded"></div>
+          <img
+            src="/card-back.png"
+            alt="Card Back"
+            className="w-full h-full object-cover"
+          />
         </div>
 
         {/* Front of Card */}

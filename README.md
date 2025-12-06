@@ -14,6 +14,10 @@ An immersive, AI-powered Tarot reading application built with React and Tailwind
 - **Reversed Cards**: Authentic Tarot experience with support for reversed card meanings.
 - **Customizable**: Easy to extend with new spreads or card decks.
 
+## Demo
+
+![Demo](public/demo.webp)
+
 ## Run Locally
 
 **Prerequisites:** Node.js

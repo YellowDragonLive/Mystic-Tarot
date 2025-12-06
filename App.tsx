@@ -134,7 +134,7 @@ const App: React.FC = () => {
             className="flex items-center gap-2 text-xs sm:text-sm text-slate-400 hover:text-amber-200 transition-colors"
           >
             <History className="w-4 h-4" />
-            <span className="hidden sm:inline">History</span>
+            <span className="hidden sm:inline">历史记录</span>
           </button>
 
           {phase !== AppPhase.Selection && (
@@ -143,7 +143,7 @@ const App: React.FC = () => {
               className="flex items-center gap-2 text-xs sm:text-sm text-slate-400 hover:text-amber-200 transition-colors"
             >
               <RotateCcw className="w-4 h-4" />
-              <span className="hidden sm:inline">Start Over</span>
+              <span className="hidden sm:inline">重新开始</span>
             </button>
           )}
         </div>
@@ -155,7 +155,7 @@ const App: React.FC = () => {
         {/* Phase 1: Spread Selection */}
         {phase === AppPhase.Selection && (
           <div className="flex-1 flex flex-col items-center justify-center animate-fadeIn">
-            <h2 className="text-2xl font-serif mb-8 text-amber-100/80">Choose Your Spread</h2>
+            <h2 className="text-2xl font-serif mb-8 text-amber-100/80">选择牌阵</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full max-w-4xl">
               {SPREADS.map(spread => (
                 <button
@@ -182,7 +182,7 @@ const App: React.FC = () => {
                 <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-amber-600 rounded-full group-hover:w-56 group-hover:h-56"></span>
                 <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black"></span>
                 <span className="relative flex items-center gap-2">
-                  <Shuffle className="w-4 h-4" /> Begin Reading
+                  <Shuffle className="w-4 h-4" /> 开始占卜
                 </span>
               </button>
             </div>
@@ -204,11 +204,13 @@ const App: React.FC = () => {
                   }}
                 >
                   {/* Back Pattern */}
-                  <div className="w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-indigo-900 to-black opacity-80"></div>
+                  <div className="w-full h-full rounded-lg overflow-hidden">
+                    <img src="/card-back.png" alt="Card Back" className="w-full h-full object-cover opacity-90" />
+                  </div>
                 </div>
               ))}
             </div>
-            <p className="mt-8 text-amber-200/50 font-serif animate-pulse text-lg">Shuffling the Deck...</p>
+            <p className="mt-8 text-amber-200/50 font-serif animate-pulse text-lg">正在洗牌...</p>
           </div>
         )}
 
@@ -222,7 +224,7 @@ const App: React.FC = () => {
                   onClick={revealAll}
                   className="px-4 py-2 text-sm border border-amber-500/30 rounded-full text-amber-200 hover:bg-amber-900/20 transition-colors"
                 >
-                  Reveal All Cards
+                  一键翻牌
                 </button>
               )}
               {phase === AppPhase.Reading && (
@@ -230,7 +232,7 @@ const App: React.FC = () => {
                   onClick={openFullReading}
                   className="flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-amber-700 to-amber-600 text-white rounded-full shadow-lg hover:shadow-amber-500/20 transition-transform hover:-translate-y-0.5"
                 >
-                  <BookOpen className="w-4 h-4" /> AI Interpretation
+                  <BookOpen className="w-4 h-4" /> AI 解读
                 </button>
               )}
             </div>

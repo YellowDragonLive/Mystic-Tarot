@@ -164,7 +164,7 @@ const ReadingModal: React.FC<ReadingModalProps> = ({ isOpen, onClose, drawnCards
         <div className="flex items-center justify-between p-4 border-b border-amber-500/20 bg-slate-950">
           <h2 className="text-xl font-serif text-amber-100 flex items-center gap-2">
             <Sparkles className="w-5 h-5 text-amber-400" />
-            {activeTab === 'card' && activeCard ? 'Card Interpretation' : 'Full AI Reading'}
+            {activeTab === 'card' && activeCard ? '单牌解读' : '整体解读'}
           </h2>
           <button onClick={onClose} className="p-2 hover:bg-white/10 rounded-full transition-colors">
             <X className="w-6 h-6 text-amber-100" />
@@ -178,14 +178,14 @@ const ReadingModal: React.FC<ReadingModalProps> = ({ isOpen, onClose, drawnCards
               onClick={() => setActiveTab('card')}
               className={`flex-1 py-3 text-sm font-serif tracking-wide transition-colors ${activeTab === 'card' ? 'bg-amber-900/20 text-amber-200 border-b-2 border-amber-500' : 'text-slate-400 hover:text-amber-100'}`}
             >
-              Single Card
+              单牌详情
             </button>
           )}
           <button
             onClick={() => { setActiveTab('reading'); if (!aiAnalysis) fetchAiReading(); }}
             className={`flex-1 py-3 text-sm font-serif tracking-wide transition-colors ${activeTab === 'reading' ? 'bg-amber-900/20 text-amber-200 border-b-2 border-amber-500' : 'text-slate-400 hover:text-amber-100'}`}
           >
-            Full AI Reading
+            整体解读
           </button>
         </div>
 
@@ -224,7 +224,7 @@ const ReadingModal: React.FC<ReadingModalProps> = ({ isOpen, onClose, drawnCards
                         title="Generate unique AI art for this card"
                       >
                         <ImageIcon className="w-3 h-3" />
-                        {generatingImage ? 'Painting...' : 'Generate Art'}
+                        {generatingImage ? '绘制中...' : '生成艺术图'}
                       </button>
                     ) : (
                       <>
@@ -232,14 +232,14 @@ const ReadingModal: React.FC<ReadingModalProps> = ({ isOpen, onClose, drawnCards
                           onClick={() => setGeneratedImageUrl(null)}
                           className="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs rounded-full shadow-lg transition-all"
                         >
-                          Original
+                          原图
                         </button>
                         <a
                           href={generatedImageUrl}
                           download={`mystic-tarot-${activeCard.card.name.replace(/\s+/g, '-').toLowerCase()}.png`}
                           className="flex items-center gap-1.5 px-3 py-1.5 bg-amber-600 hover:bg-amber-500 text-white text-xs rounded-full shadow-lg transition-all"
                         >
-                          <Download className="w-3 h-3" /> Save
+                          <Download className="w-3 h-3" /> 保存
                         </a>
                       </>
                     )}
@@ -255,7 +255,7 @@ const ReadingModal: React.FC<ReadingModalProps> = ({ isOpen, onClose, drawnCards
 
                   <div className="bg-slate-800/50 p-4 rounded-lg border border-amber-500/10">
                     <div className="flex justify-between items-center mb-2">
-                      <span className="text-amber-500 text-xs uppercase tracking-wider font-bold">Position In Spread</span>
+                      <span className="text-amber-500 text-xs uppercase tracking-wider font-bold">牌阵位置</span>
                       <span className="text-slate-500 text-xs">{activePosition.id + 1}</span>
                     </div>
                     <p className="text-slate-200 font-medium font-serif text-lg">{activePosition.name}</p>
@@ -279,12 +279,12 @@ const ReadingModal: React.FC<ReadingModalProps> = ({ isOpen, onClose, drawnCards
             <div className="h-full">
               {!aiAnalysis && !loadingReading && (
                 <div className="text-center py-10">
-                  <p className="text-slate-400 mb-4">Unlock the mysteries of your spread with AI.</p>
+                  <p className="text-slate-400 mb-4">使用 AI 解锁牌阵的奥秘。</p>
                   <button
                     onClick={fetchAiReading}
                     className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-2 rounded-full font-serif transition-all shadow-lg hover:shadow-amber-500/20"
                   >
-                    Reveal Interpretation
+                    获取 AI 解读
                   </button>
                 </div>
               )}
@@ -292,7 +292,7 @@ const ReadingModal: React.FC<ReadingModalProps> = ({ isOpen, onClose, drawnCards
               {loadingReading && (
                 <div className="flex flex-col items-center justify-center h-40 space-y-4">
                   <Loader2 className="w-8 h-8 text-amber-500 animate-spin" />
-                  <p className="text-amber-200/70 font-serif animate-pulse">Consulting the spirits...</p>
+                  <p className="text-amber-200/70 font-serif animate-pulse">正在连接灵性指引...</p>
                 </div>
               )}
 
@@ -305,7 +305,7 @@ const ReadingModal: React.FC<ReadingModalProps> = ({ isOpen, onClose, drawnCards
                   {/* Chat Section */}
                   <div className="border-t border-amber-500/20 pt-8 mt-8">
                     <h3 className="text-lg font-serif text-amber-200 mb-4 flex items-center gap-2">
-                      <MessageSquare className="w-4 h-4" /> Ask the Cards
+                      <MessageSquare className="w-4 h-4" /> 向塔罗提问
                     </h3>
 
                     {/* Chat History (excluding system and initial reading) */}
@@ -329,7 +329,7 @@ const ReadingModal: React.FC<ReadingModalProps> = ({ isOpen, onClose, drawnCards
                         value={chatInput}
                         onChange={(e) => setChatInput(e.target.value)}
                         onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
-                        placeholder="Ask a follow-up question..."
+                        placeholder="输入你的追问..."
                         disabled={isChatting}
                         className="w-full bg-slate-950/50 border border-amber-500/30 rounded-lg pl-4 pr-12 py-3 text-sm text-amber-100 placeholder:text-slate-500 focus:outline-none focus:border-amber-500 transition-colors"
                       />
