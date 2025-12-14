@@ -47,3 +47,20 @@ An immersive, AI-powered Tarot reading application built with React and Tailwind
 - Tailwind CSS
 - Lucide React (Icons)
 - Framer Motion (Animations)
+
+## Deployment
+
+This project is configured for deployment to GitHub Pages.
+
+1.  **Build and Deploy:**
+    ```bash
+    npm run deploy
+    ```
+    This command will build the project and push the `dist` folder to the `gh-pages` branch.
+
+## Recent Updates
+
+- **Mobile Optimization**: Enhanced mobile experience with horizontal scroll carousel for 3-card spreads and improved card visibility.
+- **Performance**: Embedded core assets (card back) as Base64 to resolve loading issues and improve initial render stability.
+- **Data Integration**: Standardized card data source for consistent multi-language support.
+

@@ -1,5 +1,6 @@
 import React from 'react';
 import { CardData } from '../types';
+import { CARD_BACK_IMAGE } from '../src/assets/cardBack';
 
 interface CardProps {
   data?: CardData;
@@ -31,7 +32,7 @@ const Card: React.FC<CardProps> = ({
         {/* Back of Card */}
         <div className={`absolute w-full h-full backface-hidden rounded-lg overflow-hidden border-2 border-slate-700 bg-slate-900`}>
           <img
-            src="/card-back.png"
+            src={CARD_BACK_IMAGE}
             alt="Card Back"
             className="w-full h-full object-cover"
           />

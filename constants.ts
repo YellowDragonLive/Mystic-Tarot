@@ -1,61 +1,100 @@
 import { Arcana, CardData, SpreadConfig, Suit } from './types';
 
-import minorArcanaData from './src/data/minorArcana.json';
+import newCardData from './src/data/card_data.json';
+
+// Helper for Chinese Semantic Mapping
+const rankCnMap: Record<string, string> = {
+  "ace": "首牌",
+  "two": "二",
+  "three": "三",
+  "four": "四",
+  "five": "五",
+  "six": "六",
+  "seven": "七",
+  "eight": "八",
+  "nine": "九",
+  "ten": "十",
+  "page": "侍从",
+  "knight": "骑士",
+  "queen": "王后",
+  "king": "国王"
+};
+
+const suitCnMap: Record<string, string> = {
+  "wands": "权杖",
+  "cups": "圣杯",
+  "swords": "宝剑",
+  "pentacles": "星币"
+};
+
+// Major Arcana CN names map
+const majorCnMap: Record<string, string> = {
+  "The Fool": "愚人",
+  "The Magician": "魔术师",
+  "The High Priestess": "女祭司",
+  "The Empress": "皇后",
+  "The Emperor": "皇帝",
+  "The Hierophant": "教皇",
+  "The Lovers": "恋人",
+  "The Chariot": "战车",
+  "Strength": "力量",
+  "Fortitude": "力量", // Alternative name in some decks
+  "The Hermit": "隐士",
+  "Wheel Of Fortune": "命运之轮",
+  "Justice": "正义",
+  "The Hanged Man": "倒吊人",
+  "Death": "死神",
+  "Temperance": "节制",
+  "The Devil": "恶魔",
+  "The Tower": "高塔",
+  "The Star": "星星",
+  "The Moon": "月亮",
+  "The Sun": "太阳",
+  "The Last Judgment": "审判",
+  "The World": "世界"
+};
 
 // Helper to generate full deck metadata
 const generateDeck = (): CardData[] => {
   const deck: CardData[] = [];
-  let idCounter = 0;
 
-  // Major Arcana names
-  const majors = [
-    { en: "The Fool", cn: "愚人" }, { en: "The Magician", cn: "魔术师" }, { en: "The High Priestess", cn: "女祭司" },
-    { en: "The Empress", cn: "皇后" }, { en: "The Emperor", cn: "皇帝" }, { en: "The Hierophant", cn: "教皇" },
-    { en: "The Lovers", cn: "恋人" }, { en: "The Chariot", cn: "战车" }, { en: "Strength", cn: "力量" },
-    { en: "The Hermit", cn: "隐士" }, { en: "Wheel of Fortune", cn: "命运之轮" }, { en: "Justice", cn: "正义" },
-    { en: "The Hanged Man", cn: "倒吊人" }, { en: "Death", cn: "死神" }, { en: "Temperance", cn: "节制" },
-    { en: "The Devil", cn: "恶魔" }, { en: "The Tower", cn: "高塔" }, { en: "The Star", cn: "星星" },
-    { en: "The Moon", cn: "月亮" }, { en: "The Sun", cn: "太阳" }, { en: "Judgement", cn: "审判" },
-    { en: "The World", cn: "世界" }
-  ];
+  newCardData.cards.forEach((card: any, index: number) => {
+    let name_cn = card.name;
+    let arcana = Arcana.Major;
+    let suit = Suit.None;
 
-  majors.forEach((m, idx) => {
+    // Determine Arcana and Suit
+    if (card.type === 'major') {
+      arcana = Arcana.Major;
+      suit = Suit.None;
+      // Map CN Name
+      name_cn = majorCnMap[card.name] || card.name;
+    } else {
+      arcana = Arcana.Minor;
+      // Map Suit
+      const s = card.suit.toLowerCase();
+      if (s === 'wands') suit = Suit.Wands;
+      else if (s === 'cups') suit = Suit.Cups;
+      else if (s === 'swords') suit = Suit.Swords;
+      else if (s === 'pentacles') suit = Suit.Pentacles;
+
+      // Map CN Name
+      const rank = card.value.toLowerCase();
+      const rankCn = rankCnMap[rank] || rank;
+      const suitCn = suitCnMap[s] || s;
+      name_cn = `${suitCn}${rankCn}`;
+    }
+
     deck.push({
-      id: idCounter++,
-      name: m.en,
-      name_cn: m.cn,
-      arcana: Arcana.Major,
-      suit: Suit.None,
-      number: idx,
-      imgUrl: `/tarot/major_${idx}.png`,
-      keywords: ["Major Arcana", "Archetype"]
-    });
-  });
-
-  // Merge Minor Arcana
-  // Cast JSON data to CardData[] or map it if necessary. 
-  // The JSON structure matches CardData interface mostly, but we need to ensure enums match.
-  // In JSON: "arcana": "Minor", "suit": "wands" etc.
-  // In TS: Arcana.Minor, Suit.Wands
-
-  const suitMap: Record<string, Suit> = {
-    "wands": Suit.Wands,
-    "cups": Suit.Cups,
-    "swords": Suit.Swords,
-    "pentacles": Suit.Pentacles
-  };
-
-  minorArcanaData.forEach((card: any) => {
-    deck.push({
-      id: card.id,
+      id: index,
       name: card.name,
-      name_cn: card.name_cn,
-      arcana: Arcana.Minor,
-      suit: suitMap[card.suit] || Suit.None,
-      number: card.number,
-      imgUrl: card.imgUrl,
-      description: card.description,
-      keywords: ["Minor Arcana", card.suit]
+      name_cn: name_cn,
+      arcana: arcana,
+      suit: suit,
+      number: card.value_int,
+      imgUrl: card.image,
+      description: card.desc,
+      keywords: card.meaning_up.split(',').map((k: string) => k.trim())
     });
   });
 

@@ -7,6 +7,7 @@ import ReadingModal from './components/ReadingModal';
 import HistoryModal from './components/HistoryModal';
 import { Shuffle, RotateCcw, BookOpen, Stars, History } from 'lucide-react';
 import { ReadingHistoryItem } from './types';
+import { CARD_BACK_IMAGE } from './src/assets/cardBack';
 
 const App: React.FC = () => {
   const [phase, setPhase] = useState<AppPhase>(AppPhase.Selection);
@@ -203,9 +204,10 @@ const App: React.FC = () => {
                     zIndex: i
                   }}
                 >
+
                   {/* Back Pattern */}
                   <div className="w-full h-full rounded-lg overflow-hidden">
-                    <img src="/card-back.png" alt="Card Back" className="w-full h-full object-cover opacity-90" />
+                    <img src={CARD_BACK_IMAGE} alt="Card Back" className="w-full h-full object-cover opacity-90" />
                   </div>
                 </div>
               ))}
